@@ -181,4 +181,26 @@ class BiVRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiVRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val bvr : BiVRotLine = BiVRotLine(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bvr.draw(canvas, paint)
+            animator.animate {
+                bvr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bvr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
