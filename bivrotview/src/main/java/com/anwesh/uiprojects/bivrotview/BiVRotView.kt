@@ -204,4 +204,13 @@ class BiVRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiVRotView {
+            val view : BiVRotView = BiVRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
